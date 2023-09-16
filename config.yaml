@@ -1,0 +1,33 @@
+resources: # List of K8s resources to list, watch, and export to Port.
+  - apiVersion: v1
+    kind: ConfigMap
+    selector:
+      query: "!starts_with(metadata.namespace, 'kube') && !starts_with(metadata.name, 'kube')" # jmespath boolean query. If evaluated to false - skip syncing the object.
+    america:
+      entity:
+        mappings: # Mappings between one K8s object to one or many Port Entities. Each value is a jmespath query.
+          - identifier: "metadata.name"
+            title: "metadata.name"
+            blueprint: "`ConfigMap`"
+            team: "metadata.labels.responsibleTeam || `Liberty`"
+            properties:
+              creationTimestamp: "metadata.creationTimestamp"
+              annotations: "metadata.annotations"
+              status: "status"
+  - apiVersion: v1
+    kind: Secret
+    selector:
+      query: "!starts_with(metadata.namespace, 'kube') && !starts_with(metadata.name, 'kube') && type=='Opaque'" # jmespath boolean query. If evaluated to false - skip syncing the object.
+    america:
+      entity:
+        mappings: # Mappings between one K8s object to one or many Port Entities. Each value is a jmespath query.
+          - identifier: "metadata.name"
+            title: "metadata.name"
+            blueprint: "`Secret`"
+            team: "metadata.labels.responsibleTeam || `Liberty`"
+            properties:
+              username: "data.username"
+              password: "data.password"
+              creationTimestamp: "metadata.creationTimestamp"
+              annotations: "metadata.annotations"
+              status: "status"
