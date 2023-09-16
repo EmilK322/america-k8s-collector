@@ -1,8 +1,8 @@
-from syncs.america.client import AmericaClient
-from syncs.sync import Sync
+from sinks.america.client import AmericaClient
+from sinks.sink import Sink
 
 
-class AmericaSync(Sync):
+class AmericaSink(Sink):
     def __init__(self, america_client: AmericaClient):
         self._america_client = america_client
 

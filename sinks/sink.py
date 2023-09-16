@@ -1,7 +1,7 @@
 import abc
 
 
-class Sync(abc.ABC):
+class Sink(abc.ABC):
     @abc.abstractmethod
     def add(self, obj: dict) -> None:
         raise NotImplementedError

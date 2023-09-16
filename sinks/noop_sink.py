@@ -1,7 +1,7 @@
-from syncs.sync import Sync
+from sinks.sink import Sink
 
 
-class NOOPSync(Sync):
+class NOOPSink(Sink):
     def add(self, obj: dict) -> None:
         pass
 

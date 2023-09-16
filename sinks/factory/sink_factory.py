@@ -1,12 +1,12 @@
 import abc
 
 from config.models import Resource
-from syncs import Sync
+from sinks import Sink
 
 
-class SyncFactory(abc.ABC):
+class SinkFactory(abc.ABC):
     @abc.abstractmethod
-    def get_sync(self, resource: Resource) -> Sync:
+    def get_sink(self, resource: Resource) -> Sink:
         raise NotImplementedError
 
 
