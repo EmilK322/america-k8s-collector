@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from config.models import Resource, CollectorConfig, AggregatedResource
+from america_k8s_collector.config.models import CollectorConfig, AggregatedResource, Resource
 
 
 def get_aggregated_resources(collector_config: CollectorConfig) -> list[AggregatedResource]:

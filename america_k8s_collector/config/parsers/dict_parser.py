@@ -1,5 +1,5 @@
-from config.models import CollectorConfig, Resource, Selector, America, Entity, EntityMapping
-from config.parsers.parser import CollectorConfigParser
+from america_k8s_collector.config.models import CollectorConfig, Resource, Selector, America, Entity, EntityMapping
+from america_k8s_collector.config.parsers.parser import CollectorConfigParser
 
 
 class DictCollectorConfigParser(CollectorConfigParser):

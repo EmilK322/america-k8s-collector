@@ -1,12 +1,11 @@
-from time import sleep
 from typing import NoReturn
 
 from kubernetes import dynamic, config
 from kubernetes.client import api_client
 
-from config.models import AggregatedResource
-from handlers import EventHandler
-from listeners.resource_listener import ResourceListener
+from america_k8s_collector.config.models import AggregatedResource
+from america_k8s_collector.handlers import EventHandler
+from america_k8s_collector.listeners.resource_listener import ResourceListener
 
 
 class BasicResourceListener(ResourceListener):

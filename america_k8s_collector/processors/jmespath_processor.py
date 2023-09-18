@@ -2,9 +2,9 @@ from dataclasses import asdict
 
 from jmespath.parser import ParsedResult
 
-from config.models import Resource, EntityMapping
-from processors.processor import EventProcessor
-from utils.jmespath import JmesPathQueryCache
+from america_k8s_collector.config.models import Resource, EntityMapping
+from america_k8s_collector.processors.processor import EventProcessor
+from america_k8s_collector.utils.jmespath import JmesPathQueryCache
 
 
 class JmesPathEventProcessor(EventProcessor):

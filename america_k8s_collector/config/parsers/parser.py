@@ -1,6 +1,6 @@
 import abc
 
-from config.models import CollectorConfig
+from america_k8s_collector.config.models import CollectorConfig
 
 
 class CollectorConfigParser(abc.ABC):

@@ -1,6 +1,6 @@
 import abc
 
-from config.models import Resource
+from america_k8s_collector.config.models import Resource
 
 
 class EventProcessor(abc.ABC):

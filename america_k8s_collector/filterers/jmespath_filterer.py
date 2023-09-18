@@ -1,8 +1,8 @@
 from jmespath.parser import ParsedResult
 
-from config.models import Resource
-from filterers.filterer import EventFilterer
-from utils.jmespath import JmesPathQueryCache
+from america_k8s_collector.config.models import Resource
+from america_k8s_collector.filterers.filterer import EventFilterer
+from america_k8s_collector.utils.jmespath import JmesPathQueryCache
 
 
 class JmesPathEventFilterer(EventFilterer):

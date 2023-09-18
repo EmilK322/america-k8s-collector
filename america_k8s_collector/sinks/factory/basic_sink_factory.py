@@ -1,7 +1,7 @@
-from config.models import Resource
-from sinks import Sink, AmericaSink
-from sinks.america.client import AmericaClient
-from sinks.factory.sink_factory import SinkFactory
+from america_k8s_collector.config.models import Resource
+from america_k8s_collector.sinks import Sink, AmericaSink
+from america_k8s_collector.sinks.america.client import AmericaClient
+from america_k8s_collector.sinks.factory.sink_factory import SinkFactory
 
 
 class BasicSinkFactory(SinkFactory):

@@ -1,11 +1,11 @@
-from config.models import CollectorConfig, AggregatedResource
-from config.parsers import YamlCollectorConfigParser
-from filterers import JmesPathEventFilterer, EventFilterer
-from handlers import BasicEventHandler, EventHandler
-from listeners import ThreadedMultiResourceListener, BasicResourceListener, MultiResourceListener
-from processors import JmesPathEventProcessor, EventProcessor
-from sinks.factory import SharedSinkFactory, SinkFactory
-from utils.resources import get_aggregated_resources
+from america_k8s_collector.config.models import CollectorConfig, AggregatedResource
+from america_k8s_collector.config.parsers import YamlCollectorConfigParser
+from america_k8s_collector.filterers import JmesPathEventFilterer, EventFilterer
+from america_k8s_collector.handlers import BasicEventHandler, EventHandler
+from america_k8s_collector.listeners import ThreadedMultiResourceListener, BasicResourceListener, MultiResourceListener
+from america_k8s_collector.processors import JmesPathEventProcessor, EventProcessor
+from america_k8s_collector.sinks.factory import SharedSinkFactory, SinkFactory
+from america_k8s_collector.utils.resources import get_aggregated_resources
 
 collector_config: CollectorConfig = YamlCollectorConfigParser(config_file_path='config.yaml').parse()
 aggregated_resources: list[AggregatedResource] = get_aggregated_resources(collector_config)

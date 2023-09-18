@@ -1,5 +1,5 @@
-from sinks.america.client import AmericaClient
-from sinks.sink import Sink
+from america_k8s_collector.sinks.america.client import AmericaClient
+from america_k8s_collector.sinks.sink import Sink
 
 
 class AmericaSink(Sink):

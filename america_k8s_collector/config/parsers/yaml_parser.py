@@ -2,9 +2,9 @@ from pathlib import Path
 
 import yaml
 
-from config.models import CollectorConfig
-from config.parsers.dict_parser import DictCollectorConfigParser
-from config.parsers.parser import CollectorConfigParser
+from america_k8s_collector.config.models import CollectorConfig
+from america_k8s_collector.config.parsers.dict_parser import DictCollectorConfigParser
+from america_k8s_collector.config.parsers.parser import CollectorConfigParser
 
 
 class YamlCollectorConfigParser(CollectorConfigParser):

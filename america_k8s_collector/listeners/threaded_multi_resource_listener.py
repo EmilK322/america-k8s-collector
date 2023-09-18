@@ -1,8 +1,8 @@
 from concurrent.futures import Executor, ThreadPoolExecutor
 from typing import NoReturn
 
-from config.models import AggregatedResource
-from listeners.resource_listener import MultiResourceListener, ResourceListener
+from america_k8s_collector.config.models import AggregatedResource
+from america_k8s_collector.listeners.resource_listener import MultiResourceListener, ResourceListener
 
 
 class ThreadedMultiResourceListener(MultiResourceListener):

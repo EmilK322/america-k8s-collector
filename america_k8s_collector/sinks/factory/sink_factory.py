@@ -1,7 +1,7 @@
 import abc
 
-from config.models import Resource
-from sinks import Sink
+from america_k8s_collector.config.models import Resource
+from america_k8s_collector.sinks import Sink
 
 
 class SinkFactory(abc.ABC):

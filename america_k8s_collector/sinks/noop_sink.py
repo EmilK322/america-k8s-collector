@@ -1,4 +1,4 @@
-from sinks.sink import Sink
+from america_k8s_collector.sinks.sink import Sink
 
 
 class NOOPSink(Sink):

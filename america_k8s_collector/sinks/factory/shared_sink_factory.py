@@ -1,7 +1,7 @@
-from config.models import Resource
-from sinks import Sink
-from sinks.factory.basic_sink_factory import BasicSinkFactory
-from sinks.factory.sink_factory import SinkFactory
+from america_k8s_collector.config.models import Resource
+from america_k8s_collector.sinks import Sink
+from america_k8s_collector.sinks.factory.basic_sink_factory import BasicSinkFactory
+from america_k8s_collector.sinks.factory.sink_factory import SinkFactory
 
 
 class SharedSinkFactory(SinkFactory):

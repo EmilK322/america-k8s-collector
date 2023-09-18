@@ -1,12 +1,12 @@
 import traceback
 from typing import Callable
 
-from config.models import Resource
-from filterers import EventFilterer
-from handlers.event_handler import EventHandler
-from processors import EventProcessor
-from sinks import Sink
-from sinks.factory import SinkFactory
+from america_k8s_collector.config.models import Resource
+from america_k8s_collector.filterers import EventFilterer
+from america_k8s_collector.handlers.event_handler import EventHandler
+from america_k8s_collector.processors import EventProcessor
+from america_k8s_collector.sinks import Sink
+from america_k8s_collector.sinks.factory import SinkFactory
 
 
 class BasicEventHandler(EventHandler):

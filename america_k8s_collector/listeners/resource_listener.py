@@ -1,7 +1,7 @@
 import abc
 from typing import NoReturn
 
-from config.models import AggregatedResource
+from america_k8s_collector.config.models import AggregatedResource
 
 
 class ResourceListener(abc.ABC):
