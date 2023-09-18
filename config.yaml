@@ -14,6 +14,13 @@ resources: # List of K8s resources to list, watch, and export to Port.
               creationTimestamp: "metadata.creationTimestamp"
               annotations: "metadata.annotations"
               status: "status"
+    sink:
+      type: "http"
+      url: 'http://127.0.0.1:8888/'
+      headers:
+        - key: "asd"
+          value: "6"
+
   - apiVersion: v1
     kind: Secret
     selector:
@@ -31,3 +38,9 @@ resources: # List of K8s resources to list, watch, and export to Port.
               creationTimestamp: "metadata.creationTimestamp"
               annotations: "metadata.annotations"
               status: "status"
+    sink:
+      type: "http"
+      url: 'http://127.0.0.1:8888/'
+      headers:
+        - key: "asd2"
+          value: "2"

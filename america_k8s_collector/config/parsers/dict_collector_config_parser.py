@@ -1,13 +1,16 @@
 from america_k8s_collector.config.models import CollectorConfig, Resource, Selector, America, Entity, EntityMapping
-from america_k8s_collector.config.parsers.parser import CollectorConfigParser
+from america_k8s_collector.config.models.sinks import SinkConfig
+from america_k8s_collector.config.parsers.collector_config_parser import CollectorConfigParser
+from america_k8s_collector.config.parsers.sinks.factory import SinkConfigParserFactory
+from america_k8s_collector.config.parsers.sinks.sink_parser import SinkConfigParser
 
 
 class DictCollectorConfigParser(CollectorConfigParser):
-    def __init__(self, obj: dict):
-        self._obj = obj
+    def __init__(self, sink_config_parser_factory: SinkConfigParserFactory):
+        self._sink_config_parser_factory = sink_config_parser_factory
 
-    def parse(self) -> CollectorConfig:
-        resources: list[dict] = self._obj['resources']
+    def parse(self, obj: dict) -> CollectorConfig:
+        resources: list[dict] = obj['resources']
         resources: list[Resource] = [self._parse_resource(resource) for resource in resources]
         return CollectorConfig(resources=resources)
 
@@ -16,7 +19,8 @@ class DictCollectorConfigParser(CollectorConfigParser):
         kind: str = resource['kind']
         selector: Selector = self._parse_selector(resource)
         america: America = self._parse_america(resource)
-        return Resource(api_version=api_version, kind=kind, selector=selector, america=america)
+        sink_config: SinkConfig = self._parse_sink_config(resource)
+        return Resource(api_version=api_version, kind=kind, selector=selector, america=america, sink=sink_config)
 
     def _parse_selector(self, resource: dict) -> Selector:
         query: str = resource['selector']['query']
@@ -34,4 +38,9 @@ class DictCollectorConfigParser(CollectorConfigParser):
                              blueprint=mapping['blueprint'],
                              team=mapping['team'],
                              properties=mapping['properties'],
-                             relations=mapping.get('relations', {}))
+                             relations=mapping.get('relations'))
+
+    def _parse_sink_config(self, resource: dict) -> SinkConfig:
+        sink_obj: dict = resource['sink']
+        sink_config_parser: SinkConfigParser = self._sink_config_parser_factory.get_sink_config_parser(sink_obj)
+        return sink_config_parser.parse(sink_obj)

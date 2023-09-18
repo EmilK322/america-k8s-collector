@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from america_k8s_collector.config.models.sinks.models import SinkConfig
+
 
 @dataclass(frozen=True)
 class EntityMapping:
@@ -8,7 +10,7 @@ class EntityMapping:
     blueprint: str
     team: str
     properties: dict[str, str]
-    relations: dict[str, str]
+    relations: dict[str, str] | None
 
 
 @dataclass(frozen=True)
@@ -32,6 +34,7 @@ class Resource:
     kind: str
     selector: Selector
     america: America
+    sink: SinkConfig
 
 
 @dataclass(frozen=True)
