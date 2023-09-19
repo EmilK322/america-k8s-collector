@@ -23,8 +23,8 @@ class DictCollectorConfigParser(CollectorConfigParser):
         kind: str = resource['kind']
         selector: Selector = self._parse_selector(resource)
         america: America = self._parse_america(resource)
-        sink_config: SinkConfig = self._parse_sink_config(resource)
-        return Resource(api_version=api_version, kind=kind, selector=selector, america=america, sink=sink_config)
+        sink_configs: list[SinkConfig] = self._parse_sink_config(resource)
+        return Resource(api_version=api_version, kind=kind, selector=selector, america=america, sinks=sink_configs)
 
     def _parse_selector(self, resource: dict) -> Selector:
         query: str = resource['selector']['query']
@@ -44,7 +44,14 @@ class DictCollectorConfigParser(CollectorConfigParser):
                              properties=mapping['properties'],
                              relations=mapping.get('relations'))
 
-    def _parse_sink_config(self, resource: dict) -> SinkConfig:
-        sink_obj: dict = resource['sink']
-        sink_config_parser: SinkConfigParser = self._sink_config_parser_factory.get_sink_config_parser(sink_obj)
-        return sink_config_parser.parse(sink_obj)
+    def _parse_sink_config(self, resource: dict) -> list[SinkConfig]:
+        sinks_obj: list[dict] = resource['sinks']
+        sink_configs: list[SinkConfig] = []
+        for sink_obj in sinks_obj:
+            sink_config_parser: SinkConfigParser = self._sink_config_parser_factory.get_sink_config_parser(sink_obj)
+            sink_config: SinkConfig = sink_config_parser.parse(sink_obj)
+            sink_configs.append(sink_config)
+
+        return sink_configs
+
+
