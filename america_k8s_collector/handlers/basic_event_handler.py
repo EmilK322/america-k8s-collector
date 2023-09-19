@@ -22,9 +22,7 @@ class BasicEventHandler(EventHandler):
 
     def handle(self, event: dict, resource: Resource) -> None:
         event_type: str = event['type']
-        event_raw_object: dict = event['raw_object']
         print(f'got event type: {event_type}')
-        print(f'got raw object: {event_raw_object}')
         try:
             filtered_event: dict | None = self._event_filterer.filter(event, resource)
             if not filtered_event:

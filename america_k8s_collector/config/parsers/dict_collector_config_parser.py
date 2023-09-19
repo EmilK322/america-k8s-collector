@@ -3,7 +3,7 @@ from america_k8s_collector.config.models.sinks import SinkConfig
 from america_k8s_collector.config.parsers.collector_config_parser import CollectorConfigParser
 from america_k8s_collector.config.parsers.exceptions import ParseError
 from america_k8s_collector.config.parsers.sinks.factory import SinkConfigParserFactory
-from america_k8s_collector.config.parsers.sinks.sink_parser import SinkConfigParser
+from america_k8s_collector.config.parsers.sinks import SinkConfigParser
 
 
 class DictCollectorConfigParser(CollectorConfigParser):

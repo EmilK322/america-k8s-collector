@@ -10,17 +10,11 @@ class HttpClient:
         self._headers: dict[str, str] = headers
 
     def add(self, obj: dict) -> None:
-        print(f'HTTP client add: {obj}')
         self._client.post(self._url, json=obj)
-        print(f'HTTP client added: {obj}')
 
     def update(self, obj: dict) -> None:
-        print(f'HTTP client update: {obj}')
         self._client.put(self._url, json=obj)
-        print(f'HTTP client updated: {obj}')
 
     def delete(self, obj: dict) -> None:
-        print(f'HTTP client delete: {obj}')
         # using request because delete doesn't support body, the receiver must not ignore body on delete
         self._client.request("DELETE", self._url, json=obj)
-        print(f'HTTP client deleted: {obj}')
