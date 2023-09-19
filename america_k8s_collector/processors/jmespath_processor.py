@@ -30,6 +30,6 @@ class JmesPathEventProcessor(EventProcessor):
     def _process_properties(self, event: dict, properties: dict) -> dict:
         return {key: self._process_attribute(event, value) for key, value in properties.items()}
 
-    def _process_attribute(self, event, attribute: str) -> str:
+    def _process_attribute(self, event: dict, attribute: str) -> str:
         compiled_query: ParsedResult = self._resources_mapping_pair_to_query_cache.get_or_set(attribute)
         return compiled_query.search(event['raw_object'])
