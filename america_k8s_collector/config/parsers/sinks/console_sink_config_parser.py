@@ -11,4 +11,4 @@ class ConsoleSinkConfigParser(SinkConfigParser):
             format: str | None = sink_obj.get('format')
             return ConsoleSinkConfig(type=sink_type, format=format)
         except KeyError as err:
-            raise ParseError(f"Couldn't find {err} in http sink config")
+            raise ParseError(f"Couldn't find {err} in console sink config")
