@@ -40,7 +40,7 @@ resources: # List of K8s resources to list, watch, and export to Port.
               status: "status"
     sinks:
       - type: "http"
-        url: 'http://127.0.0.1:8888/first'
+        url: 'http://127.0.0.1:8888/second'
         headers:
           - key: "asd2"
             value: "2"
