@@ -16,14 +16,14 @@ class BasicResourceListener(ResourceListener):
         )
         self._resource_version: str = ''
 
-    def listen(self, aggregated_resource: AggregatedResource) -> NoReturn:
+    def listen(self, aggregated_resource: AggregatedResource, namespace: str | None) -> NoReturn:
         api: dynamic.Resource = self._dynamic_client.resources.get(api_version=aggregated_resource.api_version,
                                                                    kind=aggregated_resource.kind)
 
         while True:
             # TODO: change the namespace parameter or think about adding namespaces vs cluster features
             print(f'start listening to {api.api_version}/{api.kind}')
-            for event in self._dynamic_client.watch(api, namespace='test', resource_version=self._resource_version):
+            for event in self._dynamic_client.watch(api, namespace=namespace, resource_version=self._resource_version):
                 self._resource_version = self._get_next_resource_version(event)
                 for resource in aggregated_resource.resources:
                     self._event_handler.handle(event, resource)

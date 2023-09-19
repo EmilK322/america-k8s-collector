@@ -6,11 +6,11 @@ from america_k8s_collector.config.models import AggregatedResource
 
 class ResourceListener(abc.ABC):
     @abc.abstractmethod
-    def listen(self, aggregated_resource: AggregatedResource) -> NoReturn:
+    def listen(self, aggregated_resource: AggregatedResource, namespace: str | None) -> NoReturn:
         raise NotImplementedError
 
 
 class MultiResourceListener(abc.ABC):
     @abc.abstractmethod
-    def listen(self, aggregated_resources: list[AggregatedResource]) -> NoReturn:
+    def listen(self, aggregated_resources: list[AggregatedResource], namespace: str | None) -> NoReturn:
         raise NotImplementedError
