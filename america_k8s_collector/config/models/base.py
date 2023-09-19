@@ -34,7 +34,7 @@ class Resource:
     kind: str
     selector: Selector
     america: America
-    sink: SinkConfig
+    sink: list[SinkConfig]
 
 
 @dataclass(frozen=True)
