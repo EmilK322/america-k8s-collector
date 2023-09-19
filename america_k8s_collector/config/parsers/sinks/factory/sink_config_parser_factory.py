@@ -1,6 +1,6 @@
 import abc
 
-from america_k8s_collector.config.parsers.sinks.sink_parser import SinkConfigParser
+from america_k8s_collector.config.parsers.sinks.sink_config_parser import SinkConfigParser
 
 
 class SinkConfigParserFactory(abc.ABC):
