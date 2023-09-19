@@ -11,6 +11,8 @@ resources: # List of K8s resources to list, watch, and export to Port.
             blueprint: "`ConfigMap`"
             team: "metadata.labels.responsibleTeam || `Liberty`"
             properties:
+              config1: "data.config1_key"
+              config2: "data.config2_key"
               creationTimestamp: "metadata.creationTimestamp"
               annotations: "metadata.annotations"
               status: "status"
