@@ -1,6 +1,7 @@
 from america_k8s_collector.config.models import CollectorConfig, Resource, Selector, America, Entity, EntityMapping
 from america_k8s_collector.config.models.sinks import SinkConfig
 from america_k8s_collector.config.parsers.collector_config_parser import CollectorConfigParser
+from america_k8s_collector.config.parsers.exceptions import ParseError
 from america_k8s_collector.config.parsers.sinks.factory import SinkConfigParserFactory
 from america_k8s_collector.config.parsers.sinks.sink_parser import SinkConfigParser
 
@@ -10,9 +11,12 @@ class DictCollectorConfigParser(CollectorConfigParser):
         self._sink_config_parser_factory = sink_config_parser_factory
 
     def parse(self, obj: dict) -> CollectorConfig:
-        resources: list[dict] = obj['resources']
-        resources: list[Resource] = [self._parse_resource(resource) for resource in resources]
-        return CollectorConfig(resources=resources)
+        try:
+            resources: list[dict] = obj['resources']
+            resources: list[Resource] = [self._parse_resource(resource) for resource in resources]
+            return CollectorConfig(resources=resources)
+        except KeyError as err:
+            raise ParseError(f"Couldn't find key {err} in config, check your config") from err
 
     def _parse_resource(self, resource: dict) -> Resource:
         api_version: str = resource['apiVersion']
