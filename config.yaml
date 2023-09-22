@@ -15,6 +15,7 @@ resources: # List of K8s resources to list, watch, and export to Port.
               config2: "data.config2_key"
               creationTimestamp: "metadata.creationTimestamp"
               annotations: "metadata.annotations"
+              isStale: false
               status: "status"
     sinks:
       - type: "http"
