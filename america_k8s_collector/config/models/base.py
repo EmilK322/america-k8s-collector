@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 
 from america_k8s_collector.config.models.sinks.models import SinkConfig
 
@@ -9,7 +10,7 @@ class EntityMapping:
     title: str
     blueprint: str
     team: str
-    properties: dict[str, str]
+    properties: dict[str, Any]
     relations: dict[str, str] | None
 
 
