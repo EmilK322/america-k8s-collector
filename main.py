@@ -1,6 +1,9 @@
+from pathlib import Path
+
 from america_k8s_collector.config.models import CollectorConfig, AggregatedResource
 from america_k8s_collector.config.parsers import YamlCollectorConfigParser
 from america_k8s_collector.config.parsers.sinks.factory import SinkConfigParserFactory, BasicSinkConfigParserFactory
+from america_k8s_collector.config.validators import CollectorConfigValidator, JsonSchemaCollectorConfigValidator
 from america_k8s_collector.filterers import JmesPathEventFilterer, EventFilterer
 from america_k8s_collector.handlers import BasicEventHandler, EventHandler
 from america_k8s_collector.listeners import ThreadedMultiResourceListener, BasicResourceListener, MultiResourceListener
@@ -14,9 +17,9 @@ parser.add_argument("-n", "--namespace", type=str,
                     help="namespace to listen for resources, if not provided listen cluster-wide")
 args = parser.parse_args()
 
-
+collector_config_validator: CollectorConfigValidator = JsonSchemaCollectorConfigValidator(Path(r'america_k8s_collector/config/collector_config.schema.json'))
 sink_config_parser_factory: SinkConfigParserFactory = BasicSinkConfigParserFactory()
-collector_config: CollectorConfig = YamlCollectorConfigParser(sink_config_parser_factory).parse_file('config.yaml')
+collector_config: CollectorConfig = YamlCollectorConfigParser(collector_config_validator, sink_config_parser_factory).parse_file(Path(r'config.yaml'))
 aggregated_resources: list[AggregatedResource] = get_aggregated_resources(collector_config)
 
 sink_factory: SinkFactory = SharedSinkFactory()

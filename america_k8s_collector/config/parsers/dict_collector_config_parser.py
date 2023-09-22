@@ -4,13 +4,16 @@ from america_k8s_collector.config.parsers.collector_config_parser import Collect
 from america_k8s_collector.config.parsers.exceptions import ParseError
 from america_k8s_collector.config.parsers.sinks.factory import SinkConfigParserFactory
 from america_k8s_collector.config.parsers.sinks import SinkConfigParser
+from america_k8s_collector.config.validators import CollectorConfigValidator
 
 
 class DictCollectorConfigParser(CollectorConfigParser):
-    def __init__(self, sink_config_parser_factory: SinkConfigParserFactory):
+    def __init__(self, collector_config_validator: CollectorConfigValidator, sink_config_parser_factory: SinkConfigParserFactory):
+        self._collector_config_validator = collector_config_validator
         self._sink_config_parser_factory = sink_config_parser_factory
 
     def parse(self, obj: dict) -> CollectorConfig:
+        self._collector_config_validator.validate(obj)
         try:
             resources: list[dict] = obj['resources']
             resources: list[Resource] = [self._parse_resource(resource) for resource in resources]

@@ -35,7 +35,8 @@ classifiers = [
 dependencies = [
     "kubernetes==27.2.0",
     "jmespath==1.0.1",
-    "PyYAML==6.0.1"
+    "PyYAML==6.0.1",
+    "jsonschema==4.19.1"
 ]
 
 [project.optional-dependencies]

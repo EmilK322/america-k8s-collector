@@ -12,6 +12,6 @@ class YamlCollectorConfigParser(DictCollectorConfigParser):
 
     def parse_file(self, config_file_path: str | Path) -> CollectorConfig:
         config_file_path = Path(config_file_path)
-        with open(config_file_path, 'r') as file:
+        with open(config_file_path, mode='r') as file:
             collector_config: dict = yaml.safe_load(file)
         return self.parse(collector_config)
