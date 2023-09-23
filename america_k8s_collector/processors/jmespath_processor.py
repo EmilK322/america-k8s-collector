@@ -1,4 +1,5 @@
 from dataclasses import asdict
+from typing import Any
 
 from jmespath.parser import ParsedResult
 
@@ -27,8 +28,13 @@ class JmesPathEventProcessor(EventProcessor):
         resource_dict['america']['entity']['mappings'] = processed_mappings
         return resource_dict
 
-    def _process_properties(self, event: dict, properties: dict) -> dict:
-        return {key: self._process_attribute(event, value) for key, value in properties.items()}
+    def _process_properties(self, event: dict, properties: dict) -> dict[str, Any]:
+        processed_properties: dict[str, Any] = {}
+        for key, value in properties.items():
+            processed_value = self._process_attribute(event, value) if isinstance(value, str) else value
+            processed_properties[key] = processed_value
+
+        return processed_properties
 
     def _process_attribute(self, event: dict, attribute: str) -> str:
         compiled_query: ParsedResult = self._resources_mapping_pair_to_query_cache.get_or_set(attribute)
