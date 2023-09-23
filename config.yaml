@@ -11,8 +11,8 @@ resources: # List of K8s resources to list, watch, and export to Port.
             blueprint: "`ConfigMap`"
             team: "metadata.labels.responsibleTeam || `Liberty`"
             properties:
-              config1: "data.config1_key"
-              config2: "data.config2_key"
+              config1: "data.key1"
+              config2: "data.key2"
               creationTimestamp: "metadata.creationTimestamp"
               annotations: "metadata.annotations"
               isStale: false
@@ -23,6 +23,10 @@ resources: # List of K8s resources to list, watch, and export to Port.
         headers:
           - key: "asd"
             value: "6"
+          - key: "secret-key-header"
+            # can use env vars using string.Format like syntax and "env__" prefix.
+            # e.g: "{env__<ENV_VAR_IN_UPPER_CASE>}"
+            value: "{env__SECRET_KEY_ENV_VAR}"
 
   - apiVersion: v1
     kind: Secret

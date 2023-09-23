@@ -4,6 +4,7 @@ from america_k8s_collector.sinks import Sink
 from america_k8s_collector.sinks.factory import SinkFactory
 from america_k8s_collector.sinks.http import HttpSink
 from america_k8s_collector.sinks.http.client import HttpClient
+from america_k8s_collector.sinks.http.headers_parsers.env_var_headers_parser import EnvVarHttpSinkHeadersParser
 
 
 class HttpSinkFactory(SinkFactory):
@@ -15,7 +16,7 @@ class HttpSinkFactory(SinkFactory):
 
     def _create_http_client(self, sink_config: HttpSinkConfig) -> HttpClient:
         headers: dict[str, str] | None = self._convert_header_configs_to_headers(sink_config)
-        return HttpClient(url=sink_config.url, headers=headers)
+        return HttpClient(url=sink_config.url, headers=headers, headers_parser=EnvVarHttpSinkHeadersParser())
 
     def _convert_header_configs_to_headers(self, sink_config: HttpSinkConfig) -> dict[str, str] | None:
         if not sink_config.headers:
