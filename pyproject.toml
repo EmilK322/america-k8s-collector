@@ -1,5 +1,5 @@
 [project]
-name = "america-k8s-collector"
+name = "k8s-collector"
 version = "0.0.1"
 description = "collect k8s objects, parse them with jmespath and send them to sink"
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -42,7 +42,7 @@ dependencies = [
 [project.optional-dependencies]
 sink-http = ["httpx==0.25.0"]
 all = [
-    "america-k8s-collector[sink-http]"
+    "k8s-collector[sink-http]"
 ]
 
 [project.urls]
@@ -53,7 +53,7 @@ all = [
 "Source" = "https://github.com/pypa/sampleproject/"
 
 [tool.setuptools.packages.find]
-include = ["america_k8s_collector*"]
+include = ["k8s_collector*"]
 
 [build-system]
 # These are the assumed default build requirements from pip:
