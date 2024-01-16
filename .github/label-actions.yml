@@ -22,6 +22,10 @@ Sinks:
   - changed-files:
       - any-glob-to-any-file: k8s_collector/sinks/**
 
+Collectors:
+  - changed-files:
+      - any-glob-to-any-file: k8s_collector/collectors/**
+
 documentation:
   - changed-files:
       - any-glob-to-any-file:
