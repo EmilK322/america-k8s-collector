@@ -10,36 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v5
-
-        CollectorConfig:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/config/**
-
-        Filterers:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/filterers/**
-
-        Handlers:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/Handlers/**
-
-        Listeners:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/listeners/**
-
-        Processors:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/processors/**
-
-        Sinks:
-          - changed-files:
-              - any-glob-to-any-file: k8s_collector/sinks/**
-
-        documentation:
-        - changed-files:
-          - any-glob-to-any-file:
-            - docs/**
-            - README.md
-
-        enhancement:
-          - head-branch: ['^feature', 'feature']
+        with:
+          config-path: '.github/label-actions.yml'
