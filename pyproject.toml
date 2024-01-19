@@ -1,6 +1,6 @@
 [project]
 name = "k8s-collector"
-version = "0.0.6"
+version = "0.0.7"
 description = "collect k8s objects, parse them with jmespath and send them to sink"
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
@@ -52,8 +52,14 @@ all = [
 #"Say Thanks!" = "http://saythanks.io/to/example"
 "Source" = "https://github.com/EmilK322/k8s-collector"
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 include = ["k8s_collector*"]
+
+[tool.setuptools.package-data]
+"*" = ["*"]
 
 [build-system]
 # These are the assumed default build requirements from pip:
