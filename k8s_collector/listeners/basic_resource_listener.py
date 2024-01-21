@@ -12,7 +12,7 @@ class BasicResourceListener(ResourceListener):
     def __init__(self, event_handler: EventHandler):
         self._event_handler: EventHandler = event_handler
         self._dynamic_client = dynamic.DynamicClient(
-            api_client.ApiClient(configuration=config.load_kube_config())
+            api_client.ApiClient(configuration=config.load_config())
         )
         self._resource_version: str = ''
 
